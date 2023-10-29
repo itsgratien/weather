@@ -9,7 +9,7 @@ export const Vector = () => {
   const { theme } = useTheme();
 
   return (
-    <div className={cn('fixed', styles.vector)}>
+    <div className={cn('relative', styles.vector)}>
       <Image
         src={
           theme === 'rwanda'

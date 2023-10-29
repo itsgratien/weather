@@ -4,12 +4,19 @@ import { ThemeContext } from '@/contexts/Theme';
 import { Theme, ThemeContextT } from '@/types/Theme';
 import { ThemeColor } from '@/utils/Color';
 import { RwandaCity } from '@/utils/Enum';
-import Vector from '@/components/Home/Vector';
+import useSwr from 'swr';
+import axios, { AxiosResponse } from 'axios';
+import { Weather } from '@/types/Weather';
 
 export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
   const [theme, setTheme] = React.useState<Theme>('rwanda');
 
   const [city, setCity] = React.useState<string>(RwandaCity.Kigali);
+
+  const { data, error, isLoading } = useSwr<AxiosResponse<Weather>>(
+    `https://api.openweathermap.org/data/2.5/weather?q=${city},${theme}&APPID=${process.env.NEXT_PUBLIC_API_KEY}`,
+    axios,
+  );
 
   const toggleTheme: ThemeContextT['toggleTheme'] = React.useCallback((arg) => {
     setTheme(arg);
@@ -20,8 +27,16 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
   }, []);
 
   const contextValue: ThemeContextT = React.useMemo(
-    () => ({ theme, toggleTheme, city, toggleCity }),
-    [theme, toggleTheme, city, toggleCity],
+    () => ({
+      theme,
+      toggleTheme,
+      city,
+      toggleCity,
+      loading: isLoading,
+      error,
+      data: data?.data,
+    }),
+    [theme, toggleTheme, city, toggleCity, isLoading, error, data?.data],
   );
 
   return (
@@ -33,10 +48,10 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
               background:
                 args.theme === 'rwanda' ? ThemeColor.Rwanda : ThemeColor.Sweden,
               color: args.theme === 'rwanda' ? 'white' : 'black',
+              overflow: 'hidden',
             }}
           >
             {children}
-            <Vector />
           </body>
         )}
       </ThemeContext.Consumer>
