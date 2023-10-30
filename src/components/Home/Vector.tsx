@@ -4,12 +4,13 @@ import { useTheme } from '@/hooks/useTheme';
 import Image from 'next/image';
 import cn from 'classnames';
 import styles from './Home.module.scss';
+import { ThemeColor } from '@/utils/Color';
 
 export const Vector = () => {
   const { theme } = useTheme();
 
   return (
-    <div className={cn('relative', styles.vector)}>
+    <div className={cn('fixed', styles.vector)}>
       <Image
         src={
           theme === 'rwanda'
