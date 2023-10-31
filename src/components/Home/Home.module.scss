@@ -38,7 +38,7 @@
 .weatherWrapper {
   margin-left: 327px;
   margin-top: 50px;
-  font-family: 'Macondo Swash Caps', cursive;
+    font-family: 'Macondo Swash Caps', cursive;
 }
 .windSpeedWrapper {
   width: 400px;
@@ -49,22 +49,6 @@
   .text {
     font-size: 20px;
     margin-left: 100px;
-  }
-  .circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 100%;
-    margin-left: 60px;
-    top: -5px;
-  }
-  .percentage {
-    width: 53px;
-    height: 53px;
-    font-size: 50px;
-  }
-  .celcius {
-    margin-left: 20px;
-    font-size: 40px;
   }
 }
 .speed {

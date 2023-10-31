@@ -8,15 +8,16 @@ import { Icon } from '@iconify/react';
 import { useTheme } from '@/hooks/useTheme';
 import { Color } from '@/utils/Color';
 import Image from 'next/image';
+import { OtherDetail } from './OtherDetail';
 
 export const Home = () => {
-  const { theme } = useTheme();
+  const { theme, data } = useTheme();
 
   return (
     <>
       <Header />
       <main>
-        <div className={cn('relative', styles.weatherWrapper)}>
+        <div className={cn('relative flex', styles.weatherWrapper)}>
           <div className={cn('relative flex', styles.windSpeedWrapper)}>
             <div className={cn('relative', styles.wind)}>
               <Icon
@@ -24,24 +25,10 @@ export const Home = () => {
                 fontSize={400}
                 color={Color.Yellow}
               />
-              <div className={cn('relative', styles.text)}>Wind</div>
+              <div className={cn('relative', styles.text)}>Weather</div>
               <div className={cn('absolute top-0 right-0 flex', styles.stat)}>
                 <div className={cn(styles.percentage, 'flex items-center')}>
-                  29
-                </div>
-                <div
-                  className={cn(styles.circle, 'absolute')}
-                  style={{
-                    background: theme === 'rwanda' ? Color.White : Color.Blue,
-                  }}
-                ></div>
-                <div
-                  className={cn(styles.celcius)}
-                  style={{
-                    color: Color.Yellow,
-                  }}
-                >
-                  C
+                  {data?.weather[0].description}
                 </div>
               </div>
             </div>
@@ -61,10 +48,11 @@ export const Home = () => {
                   fontSize: '18px',
                 }}
               >
-                6.9
+                {data?.wind.speed ?? ''}
               </span>
             </div>
           </div>
+          <OtherDetail />
         </div>
         <Vector />
       </main>
