@@ -26,7 +26,7 @@ export const Home = () => {
                 color={Color.Yellow}
               />
               <div className={cn('relative', styles.text)}>Weather</div>
-              <div className={cn('absolute top-0 right-0 flex', styles.stat)}>
+              <div className={cn('absolute top-0 flex', styles.stat)}>
                 <div className={cn(styles.percentage, 'flex items-center')}>
                   {data?.weather[0].description}
                 </div>

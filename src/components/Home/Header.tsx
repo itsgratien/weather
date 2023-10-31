@@ -9,6 +9,8 @@ import { useTheme } from '@/hooks/useTheme';
 import { Country, RwandaCity, SwedenCity } from '@/utils/Enum';
 
 export const Header = () => {
+  const [open, setOpen] = React.useState<boolean>(false);
+
   const { toggleTheme, city, toggleCity, theme } = useTheme();
 
   const country = [
@@ -34,13 +36,21 @@ export const Header = () => {
     switch (city) {
       case RwandaCity.Huye:
       case RwandaCity.Kigali:
-        return RwandaCity.Kigali + ' , ' + Country.Rwanda;
+        return city + ' , ' + Country.Rwanda;
 
       case SwedenCity.Gothenburg:
       case SwedenCity.Stockholm:
-        return SwedenCity.Stockholm + ' , ' + Country.Sweden;
+        return city + ' , ' + Country.Sweden;
       default:
         return '';
+    }
+  };
+
+  const getCities = () => {
+    if (theme === 'sweden') {
+      return country[1].cities;
+    } else {
+      return country[0].cities;
     }
   };
 
@@ -49,7 +59,7 @@ export const Header = () => {
       <div className={cn(styles.container, 'relative flex justify-between')}>
         <Dropdown
           menu={{
-            items: country[0].cities.map((item) => ({
+            items: getCities().map((item) => ({
               key: item.key,
               label: item.name + ' ' + country[0].country,
             })),
@@ -58,6 +68,8 @@ export const Header = () => {
           trigger={['click']}
           arrow
           className="cursor-pointer"
+          onOpenChange={(val) => setOpen(val)}
+          open={open}
         >
           <div className={cn(styles.selectWrapper, 'flex items-center')}>
             <div className={cn('relative', styles.image)}>
@@ -72,7 +84,10 @@ export const Header = () => {
               <span className={cn('ml-2 text-xl')}>{displayCurrentCity()}</span>
             </div>
             <div>
-              <Icon icon={'ph:caret-down-bold'} fontSize={30} />
+              <Icon
+                icon={open ? 'ph:caret-up' : 'ph:caret-down'}
+                fontSize={30}
+              />
             </div>
           </div>
         </Dropdown>

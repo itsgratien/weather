@@ -38,7 +38,6 @@
 .weatherWrapper {
   margin-left: 327px;
   margin-top: 50px;
-    font-family: 'Macondo Swash Caps', cursive;
 }
 .windSpeedWrapper {
   width: 400px;
@@ -49,6 +48,10 @@
   .text {
     font-size: 20px;
     margin-left: 100px;
+  }
+  .stat {
+    margin-left: 350px;
+    min-width: 300px;
   }
 }
 .speed {

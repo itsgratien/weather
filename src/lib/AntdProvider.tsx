@@ -6,7 +6,7 @@ export const AntdProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ConfigProvider
       theme={{
-        token: { fontSize: 15, fontFamily: 'Miltonian Tattoo' },
+        token: { fontSize: 14 },
       }}
     >
       {children}

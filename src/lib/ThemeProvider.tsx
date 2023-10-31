@@ -3,7 +3,7 @@ import React from 'react';
 import { ThemeContext } from '@/contexts/Theme';
 import { Theme, ThemeContextT } from '@/types/Theme';
 import { ThemeColor } from '@/utils/Color';
-import { RwandaCity } from '@/utils/Enum';
+import { RwandaCity, SwedenCity } from '@/utils/Enum';
 import useSwr from 'swr';
 import axios, { AxiosResponse } from 'axios';
 import { Weather } from '@/types/Weather';
@@ -20,6 +20,18 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
 
   const toggleTheme: ThemeContextT['toggleTheme'] = React.useCallback((arg) => {
     setTheme(arg);
+
+    switch (arg) {
+      case 'rwanda':
+        setCity(RwandaCity.Kigali);
+        break;
+      case 'sweden':
+        setCity(SwedenCity.Stockholm);
+        break;
+
+      default:
+        setCity(RwandaCity.Kigali);
+    }
   }, []);
 
   const toggleCity: ThemeContextT['toggleCity'] = React.useCallback((arg) => {
