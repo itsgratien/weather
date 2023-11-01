@@ -1,5 +1,8 @@
 .header {
   padding: 20px 0;
+  @media screen and (max-width: 768px) {
+    padding: 10px 0;
+  }
   .container {
     margin-left: 300px;
     margin-right: 300px;
@@ -32,7 +35,7 @@
 .vector {
   margin-top: -250px;
   @media screen and (max-width: 768px) {
-    bottom: 0px;
+    bottom: -50px;
     right: 0;
     left: 0;
   }
@@ -56,7 +59,7 @@
   @media screen and (max-width: 768px) {
     margin-left: 0;
     padding: 0 30px;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
 .windSpeedWrapper {

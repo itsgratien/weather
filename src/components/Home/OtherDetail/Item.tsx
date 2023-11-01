@@ -22,7 +22,7 @@ export const Item = ({ icon, name, total, type = 'percentage' }: ItemProps) => {
   return (
     <div className={cn(styles.items, 'relative')}>
       <div>
-        <Icon icon={icon} fontSize={isMobile ? 50 : 60} color={Color.Yellow} />
+        <Icon icon={icon} fontSize={isMobile ? 40 : 60} color={Color.Yellow} />
       </div>
       <div className="mt-2">{name}</div>
       <div

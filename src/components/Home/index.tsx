@@ -30,7 +30,7 @@ export const Home = () => {
             <div className={cn('relative', styles.wind)}>
               <Icon
                 icon={'wi:day-rain-wind'}
-                fontSize={isMobile ? 200 : 400}
+                fontSize={isMobile ? 180 : 400}
                 color={Color.Yellow}
               />
               <div className={cn('relative', styles.text)}>Weather</div>
