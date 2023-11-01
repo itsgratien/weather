@@ -10,6 +10,13 @@ NEXT_PUBLIC_API_KEY=https://api.openweathermap.org/data/2.5/weather?q={CITY},{CO
 #NEXT_PUBLIC_API_KEY=https://api.openweathermap.org/data/2.5/weather?q=Kigali,rwanda&APPID={APPID}
 
 # If You don't have APP ID signup on https://openweathermap.org and generate APP ID on your dashboard
+
+FIREBASE_API_KEY=
+FIREBASE_APP_ID=
+FIREBASE_STORAGE_BUCKET=
+FIREBASE_MESSAGING_ID=
+FIREBASE_AUTH_DOMAIN=
+FIREBASE_PROJECT_ID=
 ```
 
 Second, run the development server:
@@ -27,4 +34,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Check out [https://weather-psi-seven.vercel.app/](https://weather-psi-seven.vercel.app/) for more details.
 
 ## Author
+
 [gratien](https://gratien.vercel.app)
