@@ -9,20 +9,28 @@ import { useTheme } from '@/hooks/useTheme';
 import { Color } from '@/utils/Color';
 import Image from 'next/image';
 import { OtherDetail } from './OtherDetail';
+import { useMediaQuery } from 'react-responsive';
 
 export const Home = () => {
   const { theme, data } = useTheme();
+
+  const isMobile = useMediaQuery({ query: '(max-width:768px)' });
 
   return (
     <>
       <Header />
       <main>
-        <div className={cn('relative flex', styles.weatherWrapper)}>
+        <div
+          className={cn(
+            'relative flex md:flex-row flex-col',
+            styles.weatherWrapper,
+          )}
+        >
           <div className={cn('relative flex', styles.windSpeedWrapper)}>
             <div className={cn('relative', styles.wind)}>
               <Icon
                 icon={'wi:day-rain-wind'}
-                fontSize={400}
+                fontSize={isMobile ? 200 : 400}
                 color={Color.Yellow}
               />
               <div className={cn('relative', styles.text)}>Weather</div>
@@ -33,7 +41,10 @@ export const Home = () => {
               </div>
             </div>
             <div
-              className={cn('flex items-center absolute right-0', styles.speed)}
+              className={cn(
+                'flex items-center absolute md:right-0',
+                styles.speed,
+              )}
             >
               <Image
                 src={'/images/speed.svg'}

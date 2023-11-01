@@ -24,14 +24,14 @@ export const OtherDetail = () => {
   return (
     <div className={cn(styles.otherDetail, 'relative')}>
       <Row gutter={gutter}>
-        <Col md={8}>
+        <Col md={8} xs={8} sm={8}>
           <Item
             icon="streamline:interface-weather-humidity-none-humidity-drop-weather"
             name="humidity"
             total={data?.main.humidity}
           />
         </Col>
-        <Col md={8}>
+        <Col md={8} xs={8} sm={8}>
           <Item
             icon="map:wind-surfing"
             name="wind"
@@ -39,7 +39,7 @@ export const OtherDetail = () => {
             type="deg"
           />
         </Col>
-        <Col md={8}>
+        <Col md={8} xs={8} sm={8}>
           <Item
             icon="circum:cloud-drizzle"
             name="clouds"
@@ -47,16 +47,16 @@ export const OtherDetail = () => {
           />
         </Col>
       </Row>
-      <div className="mt-5">
+      <div className="md:mt-5 mt-0">
         <Row gutter={gutter}>
-          <Col md={24}>
+          <Col md={24} xs={10} sm={10}>
             <Sun
               icon="fxemoji:sunriseovermountains"
               time={sunrise}
               name="Sunrise"
             />
           </Col>
-          <Col md={24}>
+          <Col md={24} xs={10} sm={10}>
             <Sun icon="twemoji:sunset" time={sunset} name="Sunset" />
           </Col>
         </Row>

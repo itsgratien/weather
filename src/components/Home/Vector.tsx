@@ -4,7 +4,6 @@ import { useTheme } from '@/hooks/useTheme';
 import Image from 'next/image';
 import cn from 'classnames';
 import styles from './Home.module.scss';
-import { ThemeColor } from '@/utils/Color';
 
 export const Vector = () => {
   const { theme } = useTheme();

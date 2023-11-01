@@ -7,11 +7,14 @@ import Image from 'next/image';
 import { Icon } from '@iconify/react';
 import { useTheme } from '@/hooks/useTheme';
 import { Country, RwandaCity, SwedenCity } from '@/utils/Enum';
+import { useMediaQuery } from 'react-responsive';
 
 export const Header = () => {
   const [open, setOpen] = React.useState<boolean>(false);
 
   const { toggleTheme, city, toggleCity, theme } = useTheme();
+
+  const isMobile = useMediaQuery({ query: '(max-width:768px)' });
 
   const country = [
     {
@@ -83,13 +86,17 @@ export const Header = () => {
                 height={60}
               />
             </div>
-            <div className="flex-grow ml-4">
-              <span className={cn('ml-2 text-xl')}>{displayCurrentCity()}</span>
-            </div>
-            <div>
+            {!isMobile && (
+              <div className="flex-grow ml-4">
+                <span className={cn('ml-2 text-xl')}>
+                  {displayCurrentCity()}
+                </span>
+              </div>
+            )}
+            <div style={{ marginLeft: isMobile ? '5px' : 0 }}>
               <Icon
                 icon={open ? 'ph:caret-up' : 'ph:caret-down'}
-                fontSize={30}
+                fontSize={isMobile ? 25 : 30}
               />
             </div>
           </div>
@@ -106,8 +113,14 @@ export const Header = () => {
             arrow
           >
             <button type="button" className={cn('flex items-center')}>
-              <Icon icon={'fa6-brands:affiliatetheme'} fontSize={50} />
-              <span className={cn('text-xl')} style={{ marginLeft: '20px' }}>
+              <Icon
+                icon={'fa6-brands:affiliatetheme'}
+                fontSize={isMobile ? 40 : 50}
+              />
+              <span
+                className={cn(isMobile ? 'text-sm' : 'text-xl')}
+                style={{ marginLeft: isMobile ? '10px' : '20px' }}
+              >
                 Theme
               </span>
             </button>

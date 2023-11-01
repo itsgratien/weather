@@ -5,6 +5,7 @@ import cn from 'classnames';
 import styles from './OtherDetail.module.scss';
 import { Color } from '@/utils/Color';
 import { useTheme } from '@/hooks/useTheme';
+import { useMediaQuery } from 'react-responsive';
 
 interface ItemProps {
   icon: string;
@@ -16,10 +17,12 @@ interface ItemProps {
 export const Item = ({ icon, name, total, type = 'percentage' }: ItemProps) => {
   const { theme } = useTheme();
 
+  const isMobile = useMediaQuery({ query: '(max-width:768px)' });
+
   return (
     <div className={cn(styles.items, 'relative')}>
       <div>
-        <Icon icon={icon} fontSize={60} color={Color.Yellow} />
+        <Icon icon={icon} fontSize={isMobile ? 50 : 60} color={Color.Yellow} />
       </div>
       <div className="mt-2">{name}</div>
       <div
