@@ -48,9 +48,12 @@ export const Header = () => {
 
   const getCities = () => {
     if (theme === 'sweden') {
-      return country[1].cities;
+      return { cities: country[1].cities, country: Country.Sweden };
     } else {
-      return country[0].cities;
+      return {
+        cities: country[0].cities,
+        country: Country.Rwanda,
+      };
     }
   };
 
@@ -59,9 +62,9 @@ export const Header = () => {
       <div className={cn(styles.container, 'relative flex justify-between')}>
         <Dropdown
           menu={{
-            items: getCities().map((item) => ({
+            items: getCities().cities.map((item) => ({
               key: item.key,
-              label: item.name + ' ' + country[0].country,
+              label: item.name + ' ' + getCities().country,
             })),
             onClick: (info) => toggleCity(info.key),
           }}
