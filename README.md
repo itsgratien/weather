@@ -89,4 +89,4 @@ Check out [https://weather-psi-seven.vercel.app/](https://weather-psi-seven.verc
 
 ## Author
 
-[gratien](https://gratien.vercel.app)
+[Gratien](https://gratien.vercel.app)
