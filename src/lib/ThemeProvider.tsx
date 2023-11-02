@@ -8,13 +8,14 @@ import useSwr from 'swr';
 import axios, { AxiosResponse } from 'axios';
 import { Weather } from '@/types/Weather';
 import { useWeatherAction } from '@/hooks/useWeatherAction';
+import { getCityFromLocalStorage, getTheme } from '@/utils/Common';
 
 export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
   const [theme, setTheme] = React.useState<Theme>(
-    (localStorage.getItem('theme') as Theme) ?? 'rwanda',
+    (getTheme() as Theme) ?? 'rwanda',
   );
 
-  const [city, setCity] = React.useState<string>(RwandaCity.Kigali);
+  const [city, setCity] = React.useState<string>(getCityFromLocalStorage());
 
   const [changed, setChanged] = React.useState<boolean>(false);
 

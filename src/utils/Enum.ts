@@ -12,3 +12,7 @@ export enum SwedenCity {
   Stockholm = 'Stockholm',
   Gothenburg = 'Gothenburg',
 }
+
+export enum StorageItem {
+  Theme = 'theme',
+}
