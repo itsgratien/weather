@@ -11,21 +11,25 @@ import type { DocumentData } from 'firebase/firestore';
 import { WeatherPayload } from '@/types/Weather';
 
 export async function GET() {
-  const weatherRef = collection(db, table);
+  try {
+    const weatherRef = collection(db, table);
 
-  const result: DocumentData[] = [];
+    const result: DocumentData[] = [];
 
-  const q = query(weatherRef, orderBy('timestamp', 'desc'));
+    const q = query(weatherRef, orderBy('timestamp', 'desc'));
 
-  const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(q);
 
-  querySnapshot.forEach((doc) => {
-    const data = { id: doc.id, ...doc.data() };
+    querySnapshot.forEach((doc) => {
+      const data = { id: doc.id, ...doc.data() };
 
-    result.push(data);
-  });
+      result.push(data);
+    });
 
-  return Response.json({ data: result }, { status: 200 });
+    return Response.json({ data: result }, { status: 200 });
+  } catch (error) {
+    return Response.json({ message: 'internal server error' }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
