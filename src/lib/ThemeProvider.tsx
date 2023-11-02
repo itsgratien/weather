@@ -10,7 +10,9 @@ import { Weather } from '@/types/Weather';
 import { useWeatherAction } from '@/hooks/useWeatherAction';
 
 export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
-  const [theme, setTheme] = React.useState<Theme>('rwanda');
+  const [theme, setTheme] = React.useState<Theme>(
+    (localStorage.getItem('theme') as Theme) ?? 'rwanda',
+  );
 
   const [city, setCity] = React.useState<string>(RwandaCity.Kigali);
 
@@ -26,6 +28,7 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
   const toggleTheme: ThemeContextT['toggleTheme'] = React.useCallback((arg) => {
     setTheme(arg);
     setChanged(true);
+    localStorage.setItem('theme', arg);
 
     switch (arg) {
       case 'rwanda':
