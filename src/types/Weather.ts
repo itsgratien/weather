@@ -56,3 +56,14 @@ export interface Weather {
 export interface GetWeather {
   data: Weather;
 }
+
+export interface WeatherPayload {
+  country: string;
+  city: string;
+  humidity: number;
+  wind: Weather['wind'];
+  sunrise: number;
+  sunset: number;
+  clouds: number;
+  coord: Weather['coord'];
+}

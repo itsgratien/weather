@@ -7,11 +7,16 @@ import { RwandaCity, SwedenCity } from '@/utils/Enum';
 import useSwr from 'swr';
 import axios, { AxiosResponse } from 'axios';
 import { Weather } from '@/types/Weather';
+import { useWeatherAction } from '@/hooks/useWeatherAction';
 
 export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
   const [theme, setTheme] = React.useState<Theme>('rwanda');
 
   const [city, setCity] = React.useState<string>(RwandaCity.Kigali);
+
+  const [changed, setChanged] = React.useState<boolean>(false);
+
+  const { onSave } = useWeatherAction();
 
   const { data, error, isLoading } = useSwr<AxiosResponse<Weather>>(
     `https://api.openweathermap.org/data/2.5/weather?q=${city},${theme}&APPID=${process.env.NEXT_PUBLIC_API_KEY}`,
@@ -20,6 +25,7 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
 
   const toggleTheme: ThemeContextT['toggleTheme'] = React.useCallback((arg) => {
     setTheme(arg);
+    setChanged(true);
 
     switch (arg) {
       case 'rwanda':
@@ -36,6 +42,7 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
 
   const toggleCity: ThemeContextT['toggleCity'] = React.useCallback((arg) => {
     setCity(arg);
+    setChanged(true);
   }, []);
 
   const contextValue: ThemeContextT = React.useMemo(
@@ -50,6 +57,13 @@ export const ThemeProvider = ({ children }: { children?: React.ReactNode }) => {
     }),
     [theme, toggleTheme, city, toggleCity, isLoading, error, data?.data],
   );
+
+  React.useEffect(() => {
+    if (changed && data && data.data) {
+      setChanged(() => false);
+      onSave(data.data, { country: theme, city });
+    }
+  }, [changed, city, data, onSave, theme]);
 
   return (
     <ThemeContext.Provider value={contextValue}>
